@@ -1,0 +1,36 @@
+  #include <bits/stdc++.h>
+using namespace std;
+const int MAX=1e6;
+int req[MAX],cnt[100];
+#define ll long long
+void sieve(){
+for(ll i=2;i<=MAX;i++){
+    req[i]=1;}
+    req[1]=req[0]=0;
+    for(ll i=2;i<=sqrt(MAX);i++){
+        if(req[i]==1){
+            for(ll j=2;i*j<=MAX;j++){
+                if(req[i*j]==1){                      
+                    req[i*j]=i;               
+                }
+            }
+        }
+    }
+    for(int i=2;i<=MAX;i++){
+        if(req[i]==1){
+            req[i]=i;
+        }
+    }
+}
+void ptich(){
+int n;
+cin >>n;
+while(n>1){
+    cout << req[n] << " ";
+    n/=req[n];
+}
+}
+main(){
+sieve();
+ptich();
+}
